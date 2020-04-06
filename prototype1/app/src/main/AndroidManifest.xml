@@ -8,8 +8,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppThemeNoActionBar">
+        <activity android:name=".AnonymousAccountSettingActivity"></activity>
+        <activity android:name=".AccountSettingActivity" />
+        <activity android:name=".AccountSettingFragment" />
         <activity android:name=".ChatRoomActivity">
+
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
