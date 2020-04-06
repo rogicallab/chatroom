@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1125568984",
+    "firebase_url": "https://chatroom-715fe.firebaseio.com",
+    "project_id": "chatroom-715fe",
+    "storage_bucket": "chatroom-715fe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1125568984:android:1d0bae116210b0948f62ad",
+        "android_client_info": {
+          "package_name": "com.example.prototype1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1125568984-kife8mlckk5530f1b4hk4ssnuuk343ce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqShVF7nmAtggOyA052vDFD6jg0QB_lQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1125568984-kife8mlckk5530f1b4hk4ssnuuk343ce.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

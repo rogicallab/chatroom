@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+// firebase
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -40,6 +42,7 @@ dependencies {
     // for recyclerView
     //noinspection GradleCompatible
     implementation 'com.android.support:recyclerview-v7:28.0.0'
-
+    // firebase
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
 
 }
