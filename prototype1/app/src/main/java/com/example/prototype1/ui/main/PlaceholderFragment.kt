@@ -13,6 +13,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+
+
 import com.example.prototype1.ChatRoom.ChatRoomActivity
 import com.example.prototype1.R
 import com.firebase.ui.database.FirebaseRecyclerAdapter
@@ -24,11 +26,17 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
+import com.example.prototype1.ChatRoomActivity
+import com.example.prototype1.CustomAdapter
+import com.example.prototype1.MainActivity
+import kotlinx.android.synthetic.main.fragment_main.*
+import kotlin.properties.Delegates
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : Fragment() {
+
 
     private lateinit var pageViewModel: PageViewModel
     val PAGE_NAME = "com.example.prototype1.NAME"
