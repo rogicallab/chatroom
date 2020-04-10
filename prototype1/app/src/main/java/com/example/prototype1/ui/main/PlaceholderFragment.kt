@@ -26,7 +26,6 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_main.*
 
-import com.example.prototype1.ChatRoomActivity
 import com.example.prototype1.CustomAdapter
 import com.example.prototype1.MainActivity
 import kotlinx.android.synthetic.main.fragment_main.*
