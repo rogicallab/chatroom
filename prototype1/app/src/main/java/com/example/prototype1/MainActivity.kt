@@ -2,7 +2,6 @@ package com.example.prototype1
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -12,9 +11,12 @@ import com.example.prototype1.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
+
+//     var selectedTabName : String? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,38 @@ class MainActivity : AppCompatActivity() {
         // tool barの設置
         setSupportActionBar(findViewById(R.id.my_toolbar))
 
+        // すでにサインインしているかを確認し、サインインしていなければ匿名アカウントを作成・ログインする
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) { // already signed in(匿名も含める）
+        } else { // not signed in
+            // 匿名アカウントとしてログイン
+            auth.signInAnonymously()
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        // 本来ならここでチャットに入れない等のことを行いたいが。。。（ここに来たということはログインしていない状態が続くということ）
+                        println("signInAnonymously:failure")
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                        //updateUI(null)
+                    }
+
+                }
+        }
+        // tabの名前をとってくる
+//        selectedTabName= tabs.getTabAt(0)?.getText() as String
+//        println("selectedItemText$selectedTabName")
+//        tabs.addOnTabSelectedListener(object : OnTabSelectedListener {
+//            override fun onTabSelected(tab: TabLayout.Tab) {
+//                selectedTabName = tab.text as String?
+//                println("selectedTabName$selectedTabName")
+//            }
+//            override fun onTabUnselected(tab: TabLayout.Tab) {}
+//            override fun onTabReselected(tab: TabLayout.Tab) {}
+//        })
+
     }
     // tool barにmenuをセット
     override fun onCreateOptionsMenu(menu : Menu): Boolean {
@@ -43,38 +77,45 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    override fun onResume() {
+        super.onResume()
+        // すでにサインインしているかを確認し、サインインしていなければ匿名アカウントを作成・ログインする
+        val auth = FirebaseAuth.getInstance()
+        if (auth.currentUser != null) { // already signed in(匿名も含める）
+        } else { // not signed in
+            // 匿名アカウントとしてログイン
+            auth.signInAnonymously()
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        // 本来ならここでチャットに入れない等のことを行いたいが。。。（ここに来たということはログインしていない状態が続くということ）
+                        println("signInAnonymously:failure")
+                        Toast.makeText(baseContext, "Authentication failed.",
+                            Toast.LENGTH_SHORT).show()
+                        //updateUI(null)
+                    }
+
+                }
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // アカウントのログイン状態（匿名/非匿名）に応じてアクティビティを開始する
         if(item.itemId == R.id.user_profile){
             // すでにサインインしているか確認する
             val auth = FirebaseAuth.getInstance()
-            println(auth.currentUser)
-            if (auth.currentUser != null) { // already signed in
-                // アカウント管理Activity起動
-                println("サインインしてる")
-                val intent = Intent(this,AccountSettingActivity::class.java)
-                startActivity(intent)
-            } else { // not signed in
-                println("サインインしていない")
-                // 匿名アカウントとしてログイン
-                val auth = FirebaseAuth.getInstance()
-                auth.signInAnonymously()
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
-                            println("signInAnonymously:success")
-                            val user = auth.currentUser
-                            val intent = Intent(this,AnonymousAccountSettingActivity::class.java)
-                            startActivity(intent)
-                            //updateUI(user)
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            println("signInAnonymously:failure")
-                            Toast.makeText(baseContext, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show()
-                            //updateUI(null)
-                        }
-
-                    }
+            if (auth.currentUser != null){
+                if(auth.currentUser!!.isAnonymous){
+                    // 匿名アカウントでのログイン　匿名アカウント用セッティングアクティビティへ
+                    val intent = Intent(this,AnonymousAccountSettingActivity::class.java)
+                    startActivity(intent)
+                }else{
+                    // 通常アカウントでのログイン
+                    val intent = Intent(this,AccountSettingActivity::class.java)
+                    startActivity(intent)
+                }
             }
         }else{
             super.onOptionsItemSelected(item)
@@ -82,44 +123,6 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-//    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-//
-//        if(menu.itemId == R.id.user_profile){
-//            // すでにサインインしているか確認する
-//            val auth = FirebaseAuth.getInstance()
-//            if (auth.currentUser != null) { // already signed in
-//                // アカウント管理Activity起動
-//                println("サインインしてる")
-//                val intent = Intent(this,AccountSettingActivity::class.java)
-//                startActivity(intent)
-//            } else { // not signed in
-//                println("サインインしていない")
-//                // 匿名アカウントとしてログイン
-//                val auth = FirebaseAuth.getInstance()
-//                auth.signInAnonymously()
-//                    .addOnCompleteListener(this) { task ->
-//                        if (task.isSuccessful) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            println("signInAnonymously:success")
-//                            val user = auth.currentUser
-//                            val intent = Intent(this,AnonymousAccountSettingActivity::class.java)
-//                            startActivity(intent)
-//                            //updateUI(user)
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            println("signInAnonymously:failure")
-//                            Toast.makeText(baseContext, "Authentication failed.",
-//                                Toast.LENGTH_SHORT).show()
-//                            //updateUI(null)
-//                        }
-//
-//                    }
-//            }
-//        }else{
-//            return super.onPrepareOptionsMenu(menu)
-//        }
-//
-//    }
 
 
 }

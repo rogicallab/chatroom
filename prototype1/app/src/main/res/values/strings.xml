@@ -2,4 +2,9 @@
     <string name="app_name">prototype1</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+    <string name="setting_change">設定変更</string>
+    <string name="log_out">ログアウト</string>
+    <string name="delete_account">アカウント削除</string>
+    <string name="hint_user_name">アカウント名を入力してください</string>
+    <string name="done">完了</string>
 </resources>

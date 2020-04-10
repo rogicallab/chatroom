@@ -14,7 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype1.ChatRoomActivity
 import com.example.prototype1.CustomAdapter
+import com.example.prototype1.MainActivity
 import com.example.prototype1.R
+import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import kotlin.properties.Delegates
 
@@ -22,6 +25,7 @@ import kotlin.properties.Delegates
  * A placeholder fragment containing a simple view.
  */
 class PlaceholderFragment : Fragment() {
+
 
     private lateinit var pageViewModel: PageViewModel
     val PAGE_NAME = "com.example.prototype1.NAME"
