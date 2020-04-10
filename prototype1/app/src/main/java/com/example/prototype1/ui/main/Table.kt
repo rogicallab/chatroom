@@ -9,5 +9,9 @@ class Table{
         this.category=category
         this.title=title
     }
+    constructor(category:String,title:String,message:String){
+        this.category=category
+        this.title=title
+    }
 
 }

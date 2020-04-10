@@ -21,10 +21,10 @@ class AccountSettingActivity : AppCompatActivity() {
             val emailVerified = user.isEmailVerified
 
             // set text
-            TextView_displayName.setText("name:"+name)
-            TextView_email.setText("email:"+email)
-            TextView_photoUrl.setText("photoUrl:"+photoUrl)
-            TextView_isEmailVerified.setText("isEmailVerified:"+emailVerified)
+            TextView_displayName.text = "name:$name"
+            TextView_email.text = "email:"+email
+            TextView_photoUrl.text = "photoUrl:"+photoUrl
+            TextView_isEmailVerified.text = "isEmailVerified:"+emailVerified
 
 
         } else {
