@@ -8,11 +8,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype1.ui.main.SectionsPagerAdapter
+import com.example.prototype1.ui.main.Table
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,6 +34,9 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
+//            val reference :DatabaseReference= FirebaseDatabase.getInstance().reference.child("Top")
+//            val newTitle: Table = Table("しののん","しののんフザケンナ")
+//            reference.push().setValue(newTitle)
         }
 
         // tool barの設置

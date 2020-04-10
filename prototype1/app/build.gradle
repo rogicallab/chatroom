@@ -50,4 +50,8 @@ dependencies {
     // firebase storage
     implementation 'com.google.firebase:firebase-storage:19.1.0'
 
+    implementation 'com.google.firebase:firebase-database:19.2.1'
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
+    implementation 'com.google.firebase:firebase-core:17.3.0'
+
 }

@@ -27,6 +27,7 @@ class AccountSettingActivity : AppCompatActivity() {
             val emailVerified = user.isEmailVerified
 
             // set text
+
             TextView_displayName.setText(name)
             // set image
             val ONE_MEGABYTE: Long = 1024 * 1024
