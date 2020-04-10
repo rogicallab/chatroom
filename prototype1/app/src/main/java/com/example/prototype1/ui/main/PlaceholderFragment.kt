@@ -7,25 +7,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.view.menu.MenuView
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prototype1.ChatRoomActivity
-import com.example.prototype1.CustomAdapter
+import com.example.prototype1.ChatRoom.ChatRoomActivity
 import com.example.prototype1.R
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import kotlinx.android.synthetic.main.fragment_main.*
-import kotlinx.android.synthetic.main.recyclerview_item.view.*
-import kotlin.properties.Delegates
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,6 +35,7 @@ class PlaceholderFragment : Fragment() {
     private lateinit var reference: DatabaseReference
     private lateinit var user: FirebaseUser
     private lateinit var mFirebaseAdapter: FirebaseRecyclerAdapter<Table, TableViewHolder>
+    private lateinit var tabName:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,12 +53,15 @@ class PlaceholderFragment : Fragment() {
         pageViewModel.text.observe(this, Observer<String> {
             textView.text = it
         })
+        // 以下現在表示されているタブを取ってくるコード
+
+
 
         if(arguments?.getInt(ARG_SECTION_NUMBER,0)==1){
             /// 表示するテキスト配列を作る [テキスト0, テキスト1, ....]
-            val list = Array<String>(10) {"板$it"}
-            val adapter = CustomAdapter(list)
             val layoutManager = LinearLayoutManager(context)
+            val recyclerView:RecyclerView =(root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView)
+            tabName="Top"
 
             reference = FirebaseDatabase.getInstance().reference.child("Top")
 //            val newTitle:Table= Table("Top","しののんフザケンナ")
@@ -89,13 +91,20 @@ class PlaceholderFragment : Fragment() {
                     ) {
 //                        holder.imageView.sampleImg.setImageResource(R.mipmap.ic_launcher_round)
                         holder.textView.text = model.title
+                        holder.itemView.setOnClickListener(View.OnClickListener {
+                            val i = Intent(activity, ChatRoomActivity::class.java)
+                                i.putExtra("tabName",tabName)
+                            i.putExtra("title",mFirebaseAdapter.getItem(position).title)
+                            startActivity(i);
+                        })
                     }
                 }
 
+
             // アダプターとレイアウトマネージャーをセット
-            (root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView).layoutManager = layoutManager
-            (root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView).adapter = mFirebaseAdapter
-            (root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView).setHasFixedSize(true)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = mFirebaseAdapter
+            recyclerView.setHasFixedSize(true)
 
             mFirebaseAdapter.startListening()
 

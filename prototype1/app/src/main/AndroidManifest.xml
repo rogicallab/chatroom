@@ -12,7 +12,7 @@
         <activity android:name=".AnonymousAccountSettingActivity"></activity>
         <activity android:name=".AccountSettingActivity" />
         <activity android:name=".AccountSettingFragment" />
-        <activity android:name=".ChatRoomActivity">
+        <activity android:name=".ChatRoom.ChatRoomActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
