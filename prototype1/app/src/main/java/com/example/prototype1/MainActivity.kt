@@ -8,14 +8,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype1.ui.main.SectionsPagerAdapter
-import com.example.prototype1.ui.main.Table
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayout.OnTabSelectedListener
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
@@ -111,7 +107,6 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.user_profile){
             // すでにサインインしているか確認する
             val auth = FirebaseAuth.getInstance()
-            val current = auth.currentUser
             if (auth.currentUser != null){
                 if(auth.currentUser!!.isAnonymous){
                     // 匿名アカウントでのログイン　匿名アカウント用セッティングアクティビティへ
