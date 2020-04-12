@@ -59,7 +59,6 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                         //updateUI(null)
                     }
-
                 }
         }
         // tabの名前をとってくる
@@ -77,11 +76,11 @@ class MainActivity : AppCompatActivity() {
     }
     // tool barにmenuをセット
     override fun onCreateOptionsMenu(menu : Menu): Boolean {
-        println("Menu:$menu")
         val inflater = menuInflater
         inflater.inflate(R.menu.tab_menu, menu)
         return true
     }
+
 
     override fun onResume() {
         super.onResume()
@@ -112,6 +111,7 @@ class MainActivity : AppCompatActivity() {
         if(item.itemId == R.id.user_profile){
             // すでにサインインしているか確認する
             val auth = FirebaseAuth.getInstance()
+            val current = auth.currentUser
             if (auth.currentUser != null){
                 if(auth.currentUser!!.isAnonymous){
                     // 匿名アカウントでのログイン　匿名アカウント用セッティングアクティビティへ

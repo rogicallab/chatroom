@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.provider.MediaStore
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
@@ -61,6 +62,8 @@ class AccountSettingActivity : AppCompatActivity() {
             // 確認ボタンも追加したい
             button_delete_account.setOnClickListener {
                 FirebaseAuth.getInstance().currentUser!!.delete()
+                // アカウント削除後すぐにcurrentUserがnullになるわけではないため、ここで匿名アカウントとしてログインしておく
+                FirebaseAuth.getInstance().signInAnonymously()
                 val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }
