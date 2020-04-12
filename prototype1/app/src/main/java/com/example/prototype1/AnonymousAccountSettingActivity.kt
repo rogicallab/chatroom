@@ -1,10 +1,14 @@
 package com.example.prototype1
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_anonymous_account_setting.*
 
 class AnonymousAccountSettingActivity : AppCompatActivity() {
@@ -41,9 +45,33 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
         if(requestCode == RC_SIGN_IN){
 
             if(resultCode == RESULT_OK){
-                println("アカウント作成に成功しました")
-                //startActivity(SignedInActivity.createIntent(this, response));
-                //finish();
+                val user = FirebaseAuth.getInstance().currentUser
+                val photoUrl = user!!.photoUrl
+                val ONE_MEGABYTE: Long = 1024 * 1024
+                println("userName:"+user?.displayName)
+                // 画像が設定されていない場合デフォルトの画像を設定する
+                if(photoUrl == null){
+                    // 写真が設定されていない時（アカウント作成直後など）
+                    // firebaseにおいてあるデフォルトの画像を自分のprofilePhotoとして保存する
+                    val storageRef = FirebaseStorage.getInstance().reference
+                    val imagesRef: StorageReference? = storageRef.child("/images/user_profile.png")
+                    imagesRef?.getBytes(ONE_MEGABYTE)?.addOnSuccessListener { bytes ->
+                        val filename = user?.uid.toString()
+                        val ref = FirebaseStorage.getInstance().getReference("/images/$filename")
+                        val myUri = Uri.parse(ref.toString())
+                        ref.putBytes(bytes)
+                        val profileUpdates = UserProfileChangeRequest.Builder()
+                            .setPhotoUri(myUri)
+                            .build()
+                        user.updateProfile(profileUpdates)
+                            .addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
+                                    println("User profile updated.")
+                                }
+                            }
+                    }
+                }
+                // MainActivityに移動
                 val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent)
             }else{

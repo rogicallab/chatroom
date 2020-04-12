@@ -3,8 +3,6 @@ package com.example.prototype1
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.MediaStore
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
@@ -22,15 +20,14 @@ class AccountSettingActivity : AppCompatActivity() {
             val name = user.displayName
             val email = user.email
             val photoUrl = user.photoUrl
-            println("photoUrl:$photoUrl")
 
             // Check if user's email is verified
             val emailVerified = user.isEmailVerified
 
             // set text
-
             TextView_displayName.setText(name)
-            // set image
+
+            // 画像の表示
             val ONE_MEGABYTE: Long = 1024 * 1024
             if(photoUrl != null){
                 // 参照の作成
