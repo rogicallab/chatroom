@@ -2,10 +2,12 @@ package com.example.prototype1
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
 import com.example.prototype1.ui.main.SectionsPagerAdapter
 import com.example.prototype1.ui.main.Table
@@ -29,14 +31,34 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
+        var selectedTabName:String=tabs.getTabAt(0)?.text.toString()
+
+        tabs.addOnTabSelectedListener(object : OnTabSelectedListener {
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab != null) {
+                    selectedTabName=tab.text.toString()
+                    Log.d("Selected",selectedTabName)
+                }
+            }
+        })
         val fab: FloatingActionButton = findViewById(R.id.fab)
 
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+            if(FirebaseAuth.getInstance().currentUser?.isAnonymous!!){
+                Snackbar.make(view, "アカウントを作成してください", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
-//            val reference :DatabaseReference= FirebaseDatabase.getInstance().reference.child("Top")
-//            val newTitle: Table = Table("しののん","しののんフザケンナ")
-//            reference.push().setValue(newTitle)
+            }else{
+            var intent: Intent= Intent(this,BoardCreateActivity::class.java)
+                Log.d("Selected",selectedTabName)
+            intent.putExtra("currentCategory",selectedTabName)
+            startActivity(intent)
+            }
         }
 
         // tool barの設置

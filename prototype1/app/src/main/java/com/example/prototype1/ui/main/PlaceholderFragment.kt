@@ -2,6 +2,7 @@ package com.example.prototype1.ui.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -64,13 +65,22 @@ class PlaceholderFragment : Fragment() {
 
 
 
-        if(arguments?.getInt(ARG_SECTION_NUMBER,0)==1){
             /// 表示するテキスト配列を作る [テキスト0, テキスト1, ....]
             val layoutManager = LinearLayoutManager(context)
-            val recyclerView:RecyclerView =(root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView)
-            tabName="Top"
 
-            reference = FirebaseDatabase.getInstance().reference.child("Top")
+
+            val recyclerView:RecyclerView =(root.findViewById<RecyclerView>(R.id.simpleRecyclerView) as RecyclerView)
+
+            tabName=when(arguments?.getInt(ARG_SECTION_NUMBER,0)){
+                1->"Top"
+                2->"人間関係"
+                3->"男女関係"
+                4->"会社"
+                else -> "Top"
+            }
+        Log.d("tab",tabName)
+
+            reference = FirebaseDatabase.getInstance().reference.child(tabName)
 //            val newTitle:Table= Table("Top","しののんフザケンナ")
 //            reference.push().setValue(newTitle)
 //
@@ -125,7 +135,7 @@ class PlaceholderFragment : Fragment() {
 //                    startActivity(intent)
 //                }
 //            })
-        }
+
 
         return root
     }

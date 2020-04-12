@@ -5,13 +5,15 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.example.prototype1.R
+import com.google.firebase.database.*
 
 private val TAB_TITLES = arrayOf(
-        "トップ",
+        "Top",
     "人間関係",
     "男女関係",
     "会社"
 )
+
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to
@@ -19,6 +21,12 @@ private val TAB_TITLES = arrayOf(
  */
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
+
+    private val l=FirebaseDatabase.getInstance().reference.child("Category")
+
+
+
+
 
     override fun getItem(position: Int): Fragment {
         // getItem is called to instantiate the fragment for the given page.
