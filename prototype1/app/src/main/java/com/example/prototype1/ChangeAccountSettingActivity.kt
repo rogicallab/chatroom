@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -19,10 +20,13 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
 
     var selectedPhotoUri: Uri? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_account_setting)
+        // toolbarの設定
+        setSupportActionBar(findViewById(R.id.toolbar_change_account_setting))
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
         val user = FirebaseAuth.getInstance().currentUser
         val name = user?.displayName
         editText_user_rename.setText(name)
@@ -79,6 +83,8 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
 
             // MainActivityに戻る
             val intent = Intent(this,MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent)
         }
 
@@ -105,6 +111,15 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
 
         super.onActivityResult(requestCode, resultCode, data)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==android.R.id.home){
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     companion object {
         private const val RESULT_PICK_IMAGEFILE = 1001
     }
