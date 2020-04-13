@@ -100,7 +100,7 @@ class ChatRoomActivity : AppCompatActivity() {
                     position: Int,
                     model: Message
                 ) {
-                    holder.textView.text = model.user
+                    holder.textView.text = model.userName
                     holder.textView2.text = model.message
                     Log.d("id",model.id)
 

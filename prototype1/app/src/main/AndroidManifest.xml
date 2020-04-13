@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppThemeNoActionBar">
         <activity android:name=".Setting.SettingActivity"/>
+        <activity android:name=".BoardCreateActivity"></activity>
         <activity android:name=".ChangeAccountSettingActivity" />
         <activity android:name=".AnonymousAccountSettingActivity" />
         <activity android:name=".AccountSettingActivity" />
