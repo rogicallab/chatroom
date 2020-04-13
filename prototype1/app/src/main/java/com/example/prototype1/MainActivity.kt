@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
+import com.example.prototype1.Setting.SettingActivity
 import com.example.prototype1.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -140,6 +141,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+        }else if(item.itemId == R.id.setting){
+            // セッティングアクティビティへ
+            val intent = Intent(this,SettingActivity::class.java)
+            startActivity(intent)
         }else{
             super.onOptionsItemSelected(item)
         }
