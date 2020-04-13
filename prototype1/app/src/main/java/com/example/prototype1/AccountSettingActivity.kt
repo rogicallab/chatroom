@@ -3,6 +3,7 @@ package com.example.prototype1
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
@@ -14,11 +15,15 @@ class AccountSettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_account_setting)
+        // toolbarの設定
+        setSupportActionBar(findViewById(R.id.toolbar_account_setting))
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
             // User is signed in
             val name = user.displayName
-            val email = user.email
             val photoUrl = user.photoUrl
 
             // Check if user's email is verified
@@ -52,6 +57,8 @@ class AccountSettingActivity : AppCompatActivity() {
             button_log_out.setOnClickListener{
                 FirebaseAuth.getInstance().signOut()
                 val intent = Intent(this,MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent)
             }
 
@@ -62,6 +69,8 @@ class AccountSettingActivity : AppCompatActivity() {
                 // アカウント削除後すぐにcurrentUserがnullになるわけではないため、ここで匿名アカウントとしてログインしておく
                 FirebaseAuth.getInstance().signInAnonymously()
                 val intent = Intent(this,MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent)
             }
 
@@ -70,5 +79,13 @@ class AccountSettingActivity : AppCompatActivity() {
             println("user is null")
         }
 
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==android.R.id.home){
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

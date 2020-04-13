@@ -48,6 +48,7 @@ class BoardCreateActivity : AppCompatActivity() {
         button3.setOnClickListener(View.OnClickListener {
             val title=titleEdit.text.toString()
             val category=spinner.selectedItem.toString()
+
             reference = FirebaseDatabase.getInstance().reference.child(category).push()
 
             val newBoard:Table=Table(category,title,reference.key.toString())
