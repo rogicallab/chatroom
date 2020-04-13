@@ -102,6 +102,7 @@ class PlaceholderFragment : Fragment() {
                             val i = Intent(activity, ChatRoomActivity::class.java)
                                 i.putExtra("tabName",tabName)
                             i.putExtra("title",mFirebaseAdapter.getItem(position).title)
+                            i.putExtra("id",model.id)
                             startActivity(i);
                         })
                     }

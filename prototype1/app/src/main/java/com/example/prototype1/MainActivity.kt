@@ -7,6 +7,10 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.ViewPager
+<<<<<<< Updated upstream
+=======
+//import com.example.prototype1.Setting.SettingActivity
+>>>>>>> Stashed changes
 import com.example.prototype1.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -118,6 +122,13 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+<<<<<<< Updated upstream
+=======
+        }else if(item.itemId == R.id.setting){
+            // セッティングアクティビティへ
+//            val intent = Intent(this,SettingActivity::class.java)
+            startActivity(intent)
+>>>>>>> Stashed changes
         }else{
             super.onOptionsItemSelected(item)
         }
