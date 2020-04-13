@@ -141,6 +141,7 @@ class MainActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
             }
+
         }else if(item.itemId == R.id.setting){
             // セッティングアクティビティへ
             val intent = Intent(this,SettingActivity::class.java)

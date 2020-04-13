@@ -33,9 +33,10 @@ class ChatRoomActivity : AppCompatActivity() {
         setContentView(R.layout.activity_chat_room)
 
         // 押された板によってアクティビティのタイトルを更新する
-        val message = intent.getStringExtra("title")
-        title =message
+        val boardName = intent.getStringExtra("title")
+        title =boardName
         val tabName=intent.getStringExtra("tabName")
+        val boardId=intent.getStringExtra("id")
 
         val userId = FirebaseAuth.getInstance().currentUser?.uid as String
         val user = if (FirebaseAuth.getInstance().currentUser?.displayName==""){
@@ -44,9 +45,10 @@ class ChatRoomActivity : AppCompatActivity() {
             FirebaseAuth.getInstance().currentUser?.displayName as String
         }
 
-        Log.d("t,t",message+" "+tabName)
 
-        reference = FirebaseDatabase.getInstance().reference.child(message)
+        reference = FirebaseDatabase.getInstance().reference.child("messages").child(boardId)
+        reference.child("boardName").setValue(boardName)
+        reference.child("id").setValue(boardId)
 
 
         recycleView.setHasFixedSize(true)
@@ -63,7 +65,7 @@ class ChatRoomActivity : AppCompatActivity() {
 //        }
         button2.setOnClickListener(View.OnClickListener {
             val newMessage:Message = Message(user,edittext.text.toString(),userId)
-            reference.push().setValue(newMessage)
+            reference.child("message").push().setValue(newMessage)
             edittext.setText("")
         })
     }
@@ -81,7 +83,7 @@ class ChatRoomActivity : AppCompatActivity() {
 //        }
 
         val options: FirebaseRecyclerOptions<Message> = FirebaseRecyclerOptions.Builder<Message>()
-            .setQuery(reference, Message::class.java)
+            .setQuery(reference.child("message"), Message::class.java)
             .build()
 
         mFirebaseAdapter =
