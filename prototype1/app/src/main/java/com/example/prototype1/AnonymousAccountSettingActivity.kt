@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -16,6 +17,10 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anonymous_account_setting)
+        // toolbarの設定
+        setSupportActionBar(findViewById(R.id.toolbar_anonymous_account_setting))
+        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
+        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
 
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
@@ -73,6 +78,8 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                 }
                 // MainActivityに移動
                 val intent = Intent(this,MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent)
             }else{
                 println("アカウント作成に失敗しました")
@@ -80,6 +87,13 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
         }
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId==android.R.id.home){
+            onBackPressed()
+            return true
+        }
+        return super.onOptionsItemSelected(item)
+    }
     // sing in するためのフローが完了したのちにonActivityRestart()が呼び出される。そこで・・
     companion object {
         private const val RC_SIGN_IN = 123 // RCはrequest codeの略だと思われる

@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         tabs.setupWithViewPager(viewPager)
         var selectedTabName:String=tabs.getTabAt(0)?.text.toString()
 
-        tabs.addOnTabSelectedListener(object : OnTabSelectedListener {
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
             }
 
