@@ -1,10 +1,12 @@
-package com.example.prototype1
+package com.example.prototype1.Auth
 
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import com.example.prototype1.MainActivity
+import com.example.prototype1.R
 import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -39,7 +41,8 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                     .setAvailableProviders(providers)
                     .setTheme(R.style.AppTheme)
                     .build(),
-                RC_SIGN_IN)
+                RC_SIGN_IN
+            )
         }
     }
 
@@ -77,7 +80,7 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                     }
                 }
                 // MainActivityに移動
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent)

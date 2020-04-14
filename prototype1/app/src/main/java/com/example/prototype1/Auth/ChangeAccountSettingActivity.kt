@@ -1,4 +1,4 @@
-package com.example.prototype1
+package com.example.prototype1.Auth
 
 import android.app.Activity
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.prototype1.MainActivity
+import com.example.prototype1.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
@@ -50,7 +52,9 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type = "image/*"
-            startActivityForResult(intent, RESULT_PICK_IMAGEFILE);
+            startActivityForResult(intent,
+                RESULT_PICK_IMAGEFILE
+            );
         }
 
         button_done.setOnClickListener {
@@ -82,7 +86,7 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
                 }
 
             // MainActivityに戻る
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent)
