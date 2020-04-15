@@ -28,11 +28,10 @@ class AccountSettingActivity : AppCompatActivity() {
             val name = user.displayName
             val photoUrl = user.photoUrl
 
-            // Check if user's email is verified
-            val emailVerified = user.isEmailVerified
-
             // set text
             TextView_displayName.setText(name)
+
+
 
             // 画像の表示
             val ONE_MEGABYTE: Long = 1024 * 1024
@@ -44,6 +43,12 @@ class AccountSettingActivity : AppCompatActivity() {
                     //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, bytes.)
                     val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                     imageView.setImageBitmap(bitmap)
+
+                    println("全く存在しないものを参照")
+                    val noref = FirebaseStorage.getInstance().reference.child("images/noSuchFile")
+                    println("noref$noref")
+                    val nobyte =noref.getBytes(ONE_MEGABYTE)
+                    println("nobyte$nobyte")
                 }.addOnFailureListener {
                     // Handle any errors
                 }
@@ -72,8 +77,8 @@ class AccountSettingActivity : AppCompatActivity() {
                 // アカウント削除後すぐにcurrentUserがnullになるわけではないため、ここで匿名アカウントとしてログインしておく
                 FirebaseAuth.getInstance().signInAnonymously()
                 val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
                 startActivity(intent)
             }
 
