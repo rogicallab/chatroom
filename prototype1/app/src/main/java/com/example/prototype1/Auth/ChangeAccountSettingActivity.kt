@@ -1,4 +1,4 @@
-package com.example.prototype1
+package com.example.prototype1.Auth
 
 import android.app.Activity
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import com.example.prototype1.MainActivity
+import com.example.prototype1.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.FirebaseDatabase
@@ -37,6 +39,7 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
         if(photoUrl != null){
             // 参照の作成
             val gsReference = FirebaseStorage.getInstance().getReferenceFromUrl(photoUrl.toString())
+
             gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
                 // Data for "images/island.jpg" is returned, use this as needed
                 //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, bytes.)
@@ -51,7 +54,9 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_OPEN_DOCUMENT)
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type = "image/*"
-            startActivityForResult(intent, RESULT_PICK_IMAGEFILE);
+            startActivityForResult(intent,
+                RESULT_PICK_IMAGEFILE
+            );
         }
 
         button_done.setOnClickListener {
@@ -87,7 +92,7 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
             setUserData(id.toString(),furl.toString())
 
             // MainActivityに戻る
-            val intent = Intent(this,MainActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
             startActivity(intent)

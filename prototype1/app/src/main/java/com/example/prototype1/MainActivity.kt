@@ -8,8 +8,9 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.get
 import androidx.viewpager.widget.ViewPager
+import com.example.prototype1.Auth.AccountSettingActivity
+import com.example.prototype1.Auth.AnonymousAccountSettingActivity
 import com.example.prototype1.Setting.SettingActivity
 import com.example.prototype1.ui.main.SectionsPagerAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -17,6 +18,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 
@@ -33,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         val tabs: TabLayout = findViewById(R.id.tabs)
         tabs.setupWithViewPager(viewPager)
         var selectedTabName:String=tabs.getTabAt(0)?.text.toString()
+
 
         tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
@@ -144,11 +147,13 @@ class MainActivity : AppCompatActivity() {
             if (auth.currentUser != null){
                 if(auth.currentUser!!.isAnonymous){
                     // 匿名アカウントでのログイン　匿名アカウント用セッティングアクティビティへ
-                    val intent = Intent(this,AnonymousAccountSettingActivity::class.java)
+                    val intent = Intent(this,
+                        AnonymousAccountSettingActivity::class.java)
                     startActivity(intent)
                 }else{
                     // 通常アカウントでのログイン
-                    val intent = Intent(this,AccountSettingActivity::class.java)
+                    val intent = Intent(this,
+                        AccountSettingActivity::class.java)
                     startActivity(intent)
                 }
             }

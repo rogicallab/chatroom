@@ -1,4 +1,4 @@
-package com.example.prototype1
+package com.example.prototype1.Auth
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -6,6 +6,8 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import com.example.prototype1.MainActivity
+import com.example.prototype1.R
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.database.paging.FirebaseDataSource
 import com.google.firebase.auth.FirebaseAuth
@@ -28,8 +30,9 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
-        textView_anony_title.text = "匿名アカウントでログインしています"
-        textView_anony_id.text = "id:$uid"
+        println("photoURL:"+user?.photoUrl)
+        textView_anony_title.setText("匿名アカウントでログインしています")
+        textView_anony_id.setText("id:"+uid)
         // 新規アカウント作成
         // Choose authentication providers
         val providers = arrayListOf(
@@ -43,7 +46,8 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                     .setAvailableProviders(providers)
                     .setTheme(R.style.AppTheme)
                     .build(),
-                RC_SIGN_IN)
+                RC_SIGN_IN
+            )
         }
     }
 
@@ -83,7 +87,7 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                 //koko
                 setUserData(user.uid,photoUrl.toString())
                 // MainActivityに移動
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent)

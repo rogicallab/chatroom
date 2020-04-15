@@ -2,8 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ConstraintLayout_setting"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CFCFCF"
     tools:context=".Setting.SettingActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -17,14 +19,96 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView"
+    <LinearLayout
+        android:id="@+id/linearLayout_users"
         android:layout_width="0dp"
-        android:layout_height="28dp"
-        android:text="プライバシーポリシー"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#E3E3E3"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_setting_activity">
+
+        <TextView
+            android:id="@+id/textView_users"
+            style="@style/settingTitleItem"
+            android:includeFontPadding="false"
+            android:text="ユーザー"
+            android:textSize="24sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1dp"
+            android:background="#BCBCBC" />
+
+        <TextView
+            android:id="@+id/textView_users_setting"
+            style="@style/settingItem"
+            android:drawableStart="@drawable/ic_user_profile_holo_light"
+            android:drawableLeft="@drawable/ic_user_profile_holo_light"
+            android:drawableRight="@drawable/ic_user_arrow_forward_holo_light"
+            android:drawableEnd="@drawable/ic_user_arrow_forward_holo_light"
+            android:text="ユーザ設定" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout_support"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="#E3E3E3"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout_users">
+
+        <TextView
+            android:id="@+id/textView_support"
+            style="@style/settingTitleItem"
+            android:text="サポート"
+            android:textSize="24sp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BCBCBC" />
+
+        <TextView
+            android:id="@+id/textView_contact"
+            style="@style/settingItem"
+            android:drawableStart="@drawable/ic_user_email_holo_light"
+            android:drawableLeft="@drawable/ic_user_email_holo_light"
+            android:drawableRight="@drawable/ic_user_arrow_forward_holo_light"
+            android:drawableEnd="@drawable/ic_user_arrow_forward_holo_light"
+            android:text="お問い合わせ" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#BCBCBC" />
+
+        <TextView
+            android:id="@+id/textView_privacy_prolicy"
+            style="@style/settingItem"
+            android:drawableStart="@drawable/ic_user_hand_holo_light"
+            android:drawableLeft="@drawable/ic_user_hand_holo_light"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/ic_user_arrow_forward_holo_light"
+            android:drawableEnd="@drawable/ic_user_arrow_forward_holo_light"
+            android:text="プライバシーポリシー" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setting_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_setting_activity" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

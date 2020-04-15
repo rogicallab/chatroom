@@ -13,9 +13,9 @@
         android:theme="@style/AppThemeNoActionBar">
         <activity android:name=".Setting.SettingActivity"/>
         <activity android:name=".BoardCreateActivity"></activity>
-        <activity android:name=".ChangeAccountSettingActivity" />
-        <activity android:name=".AnonymousAccountSettingActivity" />
-        <activity android:name=".AccountSettingActivity" />
+        <activity android:name=".Auth.ChangeAccountSettingActivity" />
+        <activity android:name=".Auth.AnonymousAccountSettingActivity" />
+        <activity android:name=".Auth.AccountSettingActivity" />
         <activity android:name=".ChatRoom.ChatRoomActivity">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
