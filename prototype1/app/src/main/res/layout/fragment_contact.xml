@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CFCFCF"
+    tools:context=".Setting.ContactFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView_contact_title"
+            style="@style/settingTitleItem"
+            android:text="お問い合わせ先" />
+
+        <TextView
+            android:id="@+id/textView_contact_method"
+            style="@style/settingItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="お問い合わせ方法： 下記の連絡先より" />
+
+        <TextView
+            android:id="@+id/textView_contact_email"
+            style="@style/settingItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="お問い合わせメール：rogicallab@gmail.com" />
+    </LinearLayout>
+</FrameLayout>
