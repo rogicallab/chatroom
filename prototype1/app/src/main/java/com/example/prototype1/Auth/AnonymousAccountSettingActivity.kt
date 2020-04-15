@@ -26,6 +26,7 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
+        println("photoURL:"+user?.photoUrl)
         textView_anony_title.setText("匿名アカウントでログインしています")
         textView_anony_id.setText("id:"+uid)
         // 新規アカウント作成

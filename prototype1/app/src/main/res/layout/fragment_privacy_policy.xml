@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#404251"
+    tools:context=".Setting.PrivacyPolicyFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textViw_pp_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:gravity="center"
+                android:text="プライバシーポリシー"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_0"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="　このアプリケーション共通プライバシーポリシー（以下、本プライバシーポリシーといいます）は、ロジラボが提供するスマートフォン用アプリケーション「（アプリ名）」（以下、本アプリといいます）および本アプリに関する各サービス（以下、本サービスといいます）における利用者についての個人情報（個人情報保護法第２条第１項により定義された「個人情報」をいい、以下同様とします）を含む利用者情報の取扱いを定めたものです。なお、ロジラボの連絡先は、第12条をご覧下さい。"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/textView_pp1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="1.（総則）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_1_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	ロジラボは、利用者情報の保護実現のため、個人情報保護法、各省庁ガイドラインその他関連する法令を遵守いたします。 2.	本プライバシーポリシーは、本アプリ（本アプリに付随してロジラボが提携するサービスを含みます。以下同じ。）の利用に関し適用されます。ただし、未成年の利用者の個人情報につきましては、必ず保護者の方のご同意のもとにご提供をいただきますようお願い致します。 3.	ロジラボがロジラボの運営するウェブサイト上に掲載するプライバシーポリシーその他の個人情報保護方針または本アプリに関する利用規約等において利用者情報の取扱について規定する場合、当該規定も適用されるものとし、当該規定等が本プライバシーポリシーと抵触する場合には本プライバシーポリシーが優先されるものとします。 4.	提携パートナーにより提供される提携サービスその他ロジラボ以外の者が提供するサービスについては、本プライバシーポリシーは適用されません。これらのサービスにおける利用者情報の取扱については、当該外部サービスを提供する事業者が別途定めるプライバシーポリシー等をご参照ください。 " />
+
+            <TextView
+                android:id="@+id/textView_pp2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="2.（同意）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_2_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="本アプリおよび本サービスのご利用者は本アプリをインストールする際に、本プライバシーポリシーをご確認いただき、内容をご理解したうえでご利用ください。本プライバシーポリシーは登録手続画面において提示するほか、本アプリ設定メニュー内においていつでも閲覧することができるよう提示しており、これらの提示をもって公表したものとします。" />
+
+            <TextView
+                android:id="@+id/textView_pp3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="3.（取得する情報）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_3_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	本ポリシーにおいて、「利用者情報」とは、利用者の識別に係る個人情報、通信サービス上の行動履歴、その他利用者のスマートフォン、ＰＣ等の端末において利用者または利用者の端末に関連して生成または蓄積された情報であって、本ポリシーに基づきロジラボが取得するものを意味するものとします。ロジラボが本サービスの提供にあたり取得する利用者情報は以下に定めるとおりです。 a.	本アプリのご利用時にロジラボが取得する情報 利用者が本アプリを利用する際に、ロジラボが取得する可能性のある情報は以下のとおりです。 利用者がユーザプロフィール画像として設定した画像データ ・　本サービスに組み込まれた情報収集モジュールによって収集される情報。これに関する詳しい説明は第６条をご覧ください b.	利用者が本サービスの利用において、他のサービスと連携を許可することにより、当該他のサービスからご提供いただく情報 利用者が本サービスを利用するにあたり、ソーシャルネットワークサービス等の外部サービスとの連携を許可した場合には、その許可の際にご同意いただいた内容に基づき、以下の情報を当該外部サービスから取得します。 ・当該外部サービスで利用者が利用するアカウント ・その他当該外部サービスのプライバシー設定により利用者が連携先に開示を認めた情報 2.	ロジラボは、利用者情報の取得にあたっては偽りその他不正の手段によらず、適切な方法により取得します。また、ロジラボは、利用者が本アプリを利用することによる取得以外の方法で利用者情報を取得する場合には、その利用目的を予め通知または公表します。 " />
+
+            <TextView
+                android:id="@+id/textView_pp4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="4.（利用目的）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_4_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	ロジラボは、前条の規定により取得した利用者情報を、下記の各目的およびこれに付随する目的の範囲内で適正に取り扱います。利用者本人の事前の合意なく利用目的の範囲を超えて利用することはありません。 利用目的：アプリの機能の提供　利用する情報：利用者によって提供されたユーザプロフィール画像、ロジラボアカウント " />
+
+            <TextView
+                android:id="@+id/textView_pp5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="5.（第三者提供）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_5_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	ロジラボは、前条の規定により取得した利用者情報を、下記の各目的およびこれに付随する目的の範囲内で適正に取り扱います。利用者本人の事前の合意なく利用目的の範囲を超えて利用することはありません。 利用目的：アプリの機能の提供　利用する情報：利用者によって提供されたユーザプロフィール画像、ロジラボアカウント " />
+
+            <TextView
+                android:id="@+id/textView_pp6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="６.（情報収集モジュール・ターゲティング広告）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_6_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	ロジラボは、利用者情報を利用したターゲティング広告の配信のため、本サービスには以下の情報収集モジュールが組み込まれています。これに伴い、以下のとおり情報収集モジュール提供者への利用者情報の提供を行います。 （１）	Google analytics 提供者：Google Inc. 収集する情報：端末情報等のご利用環境（型式・OSバージョン・アプリバージョン）、アプリ内の操作ログ情報、利用履歴 プライバシーポリシー: https://policies.google.com/technologies/partner-sites?hl=ja （２）	Firebase 提供者；Google Inc 収集する情報：エンドユーザーの認証とエンドユーザーのアカウント管理に個人データを使用します。また、セキュリティを強化し、サインアップや認証時の不正行為を防ぐために、ユーザー エージェント文字列と IP アドレスを使用します。 プライバシーポリシー：https://firebase.google.com/terms/  2.	ロジラボは、第１稿に掲げる情報を、合法的かつ業務上正当に必要とされる期間に限り保持するものとし、これを超えて保持することはありません。 3.	ロジラボは、広告配信事業者に対し第１項に掲げる情報を提供する場合、当該情報等の漏洩、滅失または毀損の防止その他の安全管理のため、以下の措置を講じるよう努めます。 o	(1)　行動履歴情報等を暗号化するためのアルゴリズム等の仕組みを公開しないこと o	(2)　第２項に定める利用目的の範囲内でのみ使用することを条件として広告配信事業者に行動履歴情報等を提供すること o	(3)　広告配信事業者がさらに他の第三者に行動履歴情報等を提供する場合には、当該第三者に対し、前号と同じ条件を付した上で提供を行うべき義務を広告配信事業者に負わせること " />
+
+            <TextView
+                android:id="@+id/textView_pp7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="7.（安全管理体制）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_7_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="1.	ロジラボは、利用者の個人情報の紛失・漏洩・流出、盗用、悪用、不正アクセス、開示、改ざんおよび破壊を防ぐための必要かつ適切な措置を講じています。" />
+
+            <TextView
+                android:id="@+id/textView_pp8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="8.（個人情報の開示）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_8_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="ロジラボは、利用者から、個人情報保護法の定めに基づき個人情報の開示を求められたときは、利用者本人からのご請求であることを確認の上で、利用者に対し、遅滞なく開示を行います(当該個人惰報が存在しないときにはその旨を通知いたします。)。但し、個人情報保護法その他の法令により、ロジラボが開示の義務を負わない場合は、この限りではありません。なお、個人情報の開示につきましては、手数料(1件あたり1,000円)を頂戴しておりますので、あらかじめ御了承ください。" />
+
+            <TextView
+                android:id="@+id/textView_pp9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="9.（利用者関与の方法）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_9_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="ロジラボは、利用者から、個人情報保護法の定めに基づき個人情報の開示を求められたときは、利用者本人からのご請求であることを確認の上で、利用者に対し、遅滞なく開示を行います(当該個人惰報が存在しないときにはその旨を通知いたします。)。但し、個人情報保護法その他の法令により、ロジラボが開示の義務を負わない場合は、この限りではありません。なお、個人情報の開示につきましては、手数料(1件あたり1,000円)を頂戴しておりますので、あらかじめ御了承ください。" />
+
+            <TextView
+                android:id="@+id/textView_pp10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="10.（サービスの終了と情報の取扱い）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_10_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="ロジラボは、利用者から、個人情報保護法の定めに基づき個人情報の開示を求められたときは、利用者本人からのご請求であることを確認の上で、利用者に対し、遅滞なく開示を行います(当該個人惰報が存在しないときにはその旨を通知いたします。)。但し、個人情報保護法その他の法令により、ロジラボが開示の義務を負わない場合は、この限りではありません。なお、個人情報の開示につきましては、手数料(1件あたり1,000円)を頂戴しておりますので、あらかじめ御了承ください。" />
+
+            <TextView
+                android:id="@+id/textView_pp11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="11.（情報の開示、提供）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_11_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="ロジラボは、ご利用者の同意を得ることなく、本アプリおよび本サービスにてご利用者より取得、保存した情報を、本プライバシーポリシーに明示している第三者以外に開示または提供することはありません。ただし、以下の場合は除きます。 1.	法令に基づく場合。 2.	人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難である場合。 3.	国の機関もしくは地方公共団体またはその委託を受けたものが、法令の定めにより遂行することに協力する必要がある場合であって、本人の同意を得ることによりその遂行に支障を及ぼすおそれがある場合。 4.	その他、社会通念上、ロジラボが必要と判断した場合であって、本人の同意を得ることが困難である場合。 ロジラボは、ご利用者の同意を得ることなく、本アプリおよび本サービスにてご利用者より取得、保存した情報を、本プライバシーポリシーに明示している第三者以外に開示または提供することはありません。ただし、以下の場合は除きます。 1.	法令に基づく場合。 2.	人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難である場合。 3.	国の機関もしくは地方公共団体またはその委託を受けたものが、法令の定めにより遂行することに協力する必要がある場合であって、本人の同意を得ることによりその遂行に支障を及ぼすおそれがある場合。 4.	その他、社会通念上、ロジラボが必要と判断した場合であって、本人の同意を得ることが困難である場合。 " />
+
+            <TextView
+                android:id="@+id/textView_pp12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="12.（問い合わせ窓口）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_12_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="本アプリおよび本サービスにおけるご利用者情報の取扱いに関するお問い合わせ、ご相談は以下の窓口でお受けいたします。 ■お問い合わせ方法： 下記の連絡先より ■お問い合わせメール：rogicallab@gmail.com " />
+
+            <TextView
+                android:id="@+id/textView_pp13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:text="13.（変更）"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_pp_13_sub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="本プライバシーポリシーは改定されることがあります。 1.	本アプリのバージョンアップに伴って、ご利用者情報の取得項目の変更や追加、利用目的の変更、第三者提供等について変更がある場合には、ダウンロード前に通知し、重要なものについてはインストール前もしくはインストール時にあらためて同意を取得させていただきます。 2.	その他、ご利用者情報の取得項目の変更や追加、利用目的の変更、第三者提供等について変更がある場合には、メッセージ機能およびご登録いただいたE メールを通じてお知らせすると同時に、重要なものについてはあらためて同意を取得させていただきます。 " />
+
+            <TextView
+                android:id="@+id/textView_pp14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="最終改訂日２０２０年4月13日" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

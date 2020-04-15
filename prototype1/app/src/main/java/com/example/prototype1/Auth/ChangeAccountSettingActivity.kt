@@ -38,6 +38,7 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
         if(photoUrl != null){
             // 参照の作成
             val gsReference = FirebaseStorage.getInstance().getReferenceFromUrl(photoUrl.toString())
+
             gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
                 // Data for "images/island.jpg" is returned, use this as needed
                 //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, bytes.)
