@@ -1,5 +1,6 @@
 package com.example.prototype1.ChatRoom
 
+import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
@@ -146,9 +147,13 @@ class ChatRoomActivity : AppCompatActivity() {
 
                         }
                     })
-
-
-
+//                    val cId= FirebaseAuth.getInstance().currentUser?.uid
+//                    if(cId==model.id){
+//                        holder.imageView.visibility=View.INVISIBLE
+//                    }
+                    holder.imageView.setOnClickListener(View.OnClickListener {
+                        //その人のプロフィールを表示する
+                    })
 
                     holder.textView2.text = model.message
                     Log.d("id",model.id)
