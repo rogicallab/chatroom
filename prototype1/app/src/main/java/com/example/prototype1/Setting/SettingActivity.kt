@@ -12,8 +12,8 @@ class SettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_setting)
 
         setSupportActionBar(findViewById(R.id.toolbar_setting_activity))
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -17,8 +17,8 @@ class AccountSettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_account_setting)
         // toolbarの設定
         setSupportActionBar(findViewById(R.id.toolbar_account_setting))
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
@@ -30,7 +30,7 @@ class AccountSettingActivity : AppCompatActivity() {
             val emailVerified = user.isEmailVerified
 
             // set text
-            TextView_displayName.setText(name)
+            TextView_displayName.text = name
 
             // 画像の表示
             val ONE_MEGABYTE: Long = 1024 * 1024
@@ -67,7 +67,12 @@ class AccountSettingActivity : AppCompatActivity() {
             button_delete_account.setOnClickListener {
                 FirebaseAuth.getInstance().currentUser!!.delete()
                 // アカウント削除後すぐにcurrentUserがnullになるわけではないため、ここで匿名アカウントとしてログインしておく
-                FirebaseAuth.getInstance().signInAnonymously()
+                FirebaseAuth.getInstance().signInAnonymously().addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        // ここにかく
+                    }
+                }
                 val intent = Intent(this,MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

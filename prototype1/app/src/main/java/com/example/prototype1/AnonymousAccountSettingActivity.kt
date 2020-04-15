@@ -1,31 +1,35 @@
 package com.example.prototype1
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import com.firebase.ui.auth.AuthUI
+import com.firebase.ui.database.paging.FirebaseDataSource
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_anonymous_account_setting.*
 
 class AnonymousAccountSettingActivity : AppCompatActivity() {
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_anonymous_account_setting)
         // toolbarの設定
         setSupportActionBar(findViewById(R.id.toolbar_anonymous_account_setting))
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val user = FirebaseAuth.getInstance().currentUser
         val uid = user?.uid
-        textView_anony_title.setText("匿名アカウントでログインしています")
-        textView_anony_id.setText("id:"+uid)
+        textView_anony_title.text = "匿名アカウントでログインしています"
+        textView_anony_id.text = "id:$uid"
         // 新規アカウント作成
         // Choose authentication providers
         val providers = arrayListOf(
@@ -76,6 +80,8 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
                             }
                     }
                 }
+                //koko
+                setUserData(user.uid,photoUrl.toString())
                 // MainActivityに移動
                 val intent = Intent(this,MainActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -97,5 +103,9 @@ class AnonymousAccountSettingActivity : AppCompatActivity() {
     // sing in するためのフローが完了したのちにonActivityRestart()が呼び出される。そこで・・
     companion object {
         private const val RC_SIGN_IN = 123 // RCはrequest codeの略だと思われる
+    }
+   fun setUserData(id:String,fUrl:String){
+        val reference=FirebaseDatabase.getInstance().reference.child("user").child(id)
+        reference.child("fUrl").setValue(fUrl)
     }
 }
