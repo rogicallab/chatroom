@@ -12,6 +12,7 @@ import com.example.prototype1.MainActivity
 import com.example.prototype1.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import kotlinx.android.synthetic.main.activity_change_account_setting.*
@@ -85,6 +86,10 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
                         println("User profile updated.")
                     }
                 }
+            //koko   data change
+            val id= FirebaseAuth.getInstance().currentUser?.uid
+            val furl= FirebaseAuth.getInstance().currentUser?.photoUrl
+            setUserData(id.toString(),furl.toString())
 
             // MainActivityに戻る
             val intent = Intent(this, MainActivity::class.java)
@@ -127,5 +132,9 @@ class ChangeAccountSettingActivity : AppCompatActivity() {
 
     companion object {
         private const val RESULT_PICK_IMAGEFILE = 1001
+    }
+    fun setUserData(id:String,fUrl:String){
+        val reference= FirebaseDatabase.getInstance().reference.child("user").child(id)
+        reference.child("fUrl").setValue(fUrl)
     }
 }

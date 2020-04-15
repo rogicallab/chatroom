@@ -22,7 +22,27 @@ private val TAB_TITLES = arrayOf(
 class SectionsPagerAdapter(private val context: Context, fm: FragmentManager)
     : FragmentPagerAdapter(fm) {
 
-    private val l=FirebaseDatabase.getInstance().reference.child("Category")
+//    private fun getList():ArrayList<String> {
+//        val l=FirebaseDatabase.getInstance().reference.child("Category")
+//        val list =ArrayList<String>()
+//        val listener= object : ValueEventListener {
+//            override fun onCancelled(p0: DatabaseError) {
+//            }
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                if(p0!!.exists()){
+//                    list.clear()
+//                    for (e in p0.children){
+//                        val name=e.key
+//                        list.add(name!!)
+//                    }
+//                }
+//            }
+//        }
+//        l.addListenerForSingleValueEvent(listener)
+//        return list
+//
+//    }
 
 
 

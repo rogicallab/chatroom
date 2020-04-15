@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -84,6 +85,8 @@ class MainActivity : AppCompatActivity() {
                             Toast.LENGTH_SHORT).show()
                         //updateUI(null)
                     }
+                    //koko
+
                 }
         }
         // tabの名前をとってくる
@@ -117,6 +120,11 @@ class MainActivity : AppCompatActivity() {
             auth.signInAnonymously()
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
+                        val id= FirebaseAuth.getInstance().currentUser?.uid
+                        val storageRef = FirebaseStorage.getInstance().reference
+                        val imagesRef: StorageReference? = storageRef.child("/images/user_profile.png")
+                        val furl=  Uri.parse(imagesRef.toString())
+                        setUserData(id.toString(),furl.toString())
                         // Sign in success, update UI with the signed-in user's information
                     } else {
                         // If sign in fails, display a message to the user.
@@ -159,7 +167,10 @@ class MainActivity : AppCompatActivity() {
         }
         return false
     }
-
+    fun setUserData(id:String,fUrl:String){
+        val reference= FirebaseDatabase.getInstance().reference.child("user").child(id)
+        reference.child("fUrl").setValue(fUrl)
+    }
 
 
 }

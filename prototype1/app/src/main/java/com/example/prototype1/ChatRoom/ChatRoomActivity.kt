@@ -1,12 +1,14 @@
 package com.example.prototype1.ChatRoom
 
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prototype1.R
@@ -15,9 +17,11 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import com.google.firebase.storage.FirebaseStorage
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_chat_room.*
+
 
 class ChatRoomActivity : AppCompatActivity() {
     private lateinit var mDatabase: FirebaseDatabase
@@ -25,6 +29,7 @@ class ChatRoomActivity : AppCompatActivity() {
     private lateinit var user: FirebaseUser
     private lateinit var mFirebaseAdapter: FirebaseRecyclerAdapter<Message, MessageViewHolder>
     private lateinit var options: FirebaseListOptions<Message>
+    var gson:Gson=Gson()
 
     val PAGE_NAME = "com.example.prototype1.NAME"
 
@@ -38,8 +43,9 @@ class ChatRoomActivity : AppCompatActivity() {
         val tabName=intent.getStringExtra("tabName")
         val boardId=intent.getStringExtra("id")
 
-        val userId = FirebaseAuth.getInstance().currentUser?.uid as String
-        val user = if (FirebaseAuth.getInstance().currentUser?.displayName==""){
+        val user=FirebaseAuth.getInstance().currentUser!!
+        val userId = user.uid as String
+        val userName = if (FirebaseAuth.getInstance().currentUser?.displayName==""){
             "匿名さん"
         }else{
             FirebaseAuth.getInstance().currentUser?.displayName as String
@@ -48,7 +54,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
         reference = FirebaseDatabase.getInstance().reference.child("messages").child(boardId)
         reference.child("boardName").setValue(boardName)
-        reference.child("id").setValue(boardId)
+        reference.child("userId").setValue(userId)
 
 
         recycleView.setHasFixedSize(true)
@@ -64,7 +70,7 @@ class ChatRoomActivity : AppCompatActivity() {
 ////            ((TextView) v).setText(model.author+": "+model.content);
 //        }
         button2.setOnClickListener(View.OnClickListener {
-            val newMessage:Message = Message(user,edittext.text.toString(),userId)
+            val newMessage:Message = Message(userName,edittext.text.toString(),userId)
             reference.child("message").push().setValue(newMessage)
             edittext.setText("")
         })
@@ -86,6 +92,7 @@ class ChatRoomActivity : AppCompatActivity() {
             .setQuery(reference.child("message"), Message::class.java)
             .build()
 
+
         mFirebaseAdapter =
             object : FirebaseRecyclerAdapter<Message, MessageViewHolder>(options) {
                 override fun onCreateViewHolder(
@@ -102,7 +109,47 @@ class ChatRoomActivity : AppCompatActivity() {
                     position: Int,
                     model: Message
                 ) {
-                    holder.textView.text = model.userName
+                    val ONE_MEGABYTE: Long = 1024 * 1024
+
+                   val fref=FirebaseDatabase.getInstance().reference.child("user").child(model.id).child("fUrl")
+                    fref.addValueEventListener(object : ValueEventListener {
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val furl=p0.value.toString()
+                            Log.d("fUrl",furl)
+                            if( furl== null){
+                                // 参の作成
+                                val ref = FirebaseStorage.getInstance().reference.child("/images/${model.id}")
+                                ref.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
+                                    // Data for "images/island.jpg" is returned, use this as needed
+                                    //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, bytes.)
+                                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                                    holder.imageView.setImageBitmap(bitmap)
+                                }.addOnFailureListener {
+                                    // Handle any errors
+                                }
+
+                            }else{
+                                // 参照の作成
+                                val gsReference = FirebaseStorage.getInstance().getReferenceFromUrl(furl)
+                                gsReference.getBytes(ONE_MEGABYTE).addOnSuccessListener { bytes ->
+                                    // Data for "images/island.jpg" is returned, use this as needed
+                                    //val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, bytes.)
+                                    val bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                                    holder.imageView.setImageBitmap(bitmap)
+                                }.addOnFailureListener {
+                                    // Handle any errors
+                                }
+                            }
+                        }
+
+                        override fun onCancelled(p0: DatabaseError) {
+
+                        }
+                    })
+
+
+
+
                     holder.textView2.text = model.message
                     Log.d("id",model.id)
 
@@ -131,7 +178,7 @@ class ChatRoomActivity : AppCompatActivity() {
 
     public class MessageViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        val textView: TextView =itemView.findViewById(R.id.text_view)
+        val imageView: ImageView =itemView.findViewById(R.id.userImg)
         val textView2: TextView =itemView.findViewById(R.id.text_view2)
     }
 

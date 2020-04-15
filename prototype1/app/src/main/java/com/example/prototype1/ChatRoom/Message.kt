@@ -1,6 +1,6 @@
 package com.example.prototype1.ChatRoom
 
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
 class Message (){
     var userName:String=""
@@ -16,8 +16,6 @@ class Message (){
         this.message=message
         this.id=id
     }
-
-
 
 
     @SuppressWarnings("unused")

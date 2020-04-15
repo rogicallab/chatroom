@@ -19,8 +19,8 @@ class AccountSettingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_account_setting)
         // toolbarの設定
         setSupportActionBar(findViewById(R.id.toolbar_account_setting))
-        getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
-        getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
 
         val user = FirebaseAuth.getInstance().currentUser
         if (user != null) {
@@ -29,7 +29,7 @@ class AccountSettingActivity : AppCompatActivity() {
             val photoUrl = user.photoUrl
 
             // set text
-            TextView_displayName.setText(name)
+            TextView_displayName.text = name
 
 
 
